@@ -1,0 +1,16 @@
+# Fdb version 4
+["pdflatex"] 1713720417.9901 "/Users/jshe/School/ttic31180/proposal/neurips_2023.tex" "neurips_2023.pdf" "neurips_2023" 1713720418.26263 2
+  "/Users/jshe/School/ttic31180/proposal/neurips_2023.tex" 1713720417.3779 16603 aafe07f9ca1b23cde3c2cf90be071ab5 ""
+  "/usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls" 1705352648 20144 147463a6a579f4597269ef9565205cfe ""
+  "/usr/local/texlive/2024/texmf-dist/tex/latex/base/size10.clo" 1705352648 8448 dbc0dbf4156c0bb9ba01a1c685d3bad0 ""
+  "/usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf" 1708706663 41649 5d6ae549fbbcb850a863f69aa41f3d10 ""
+  "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1711122429 8221435 87475a11a0e16feece63157929773497 ""
+  "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
+  "neurips_2023.aux" 0 -1 0 "pdflatex"
+  "neurips_2023.sty" 0 -1 0 ""
+  "neurips_2023.tex" 1713720417.3779 16603 aafe07f9ca1b23cde3c2cf90be071ab5 ""
+  (generated)
+  "neurips_2023.aux"
+  "neurips_2023.log"
+  "neurips_2023.pdf"
+  (rewritten before read)

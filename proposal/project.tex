@@ -1,0 +1,116 @@
+\documentclass{article}
+
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2023
+
+
+% ready for submission
+\usepackage[preprint]{neurips_2023}
+
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2023}
+
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2023}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2023}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+
+
+\title{Learning on Molecular Graphs}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+\author{
+  Jay Shen \\
+  Department of Physics \\
+  University of Chicago\\
+  Chicago, IL 60637 \\
+  \texttt{jshe@uchicago.edu} \\
+  \And
+  Mark Lee \\
+  Deparment of Statistics \\
+  University of Chicago \\
+  Chicago, IL 60637 \\
+  \texttt{markyl@uchicago.edu} \\
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    Graphical deep learning has been experiencing a heyday of sorts. Despite 
+    being in its relative infancy, the paradigm of graphical neural networks 
+    (GNNs) has already had enormous success tackling tasks from weather 
+    forecasting to protein folding. 
+
+    Computational chemistry has perhaps been the field where GNNs have recieved 
+    their warmest welcome. The natural interpretation of atoms as vertices and 
+    bonds as edges of a molecular graph has resulted in their widespread 
+    adoption for application anywhere from molecular dynamics simulation to 
+    automated design. The correspondence has gone both ways, however. Because 
+    problems such as drug discovery, materials design, and efficient simulation 
+    are so important, pure AI research into graphical learning has found a 
+    wealth of problems for the tackling. 
+
+    The science of GNNs today draws upon existing approaches both from deep 
+    learning, such as convolutions and attention mechanisms, as well as from the 
+    theory of probabilistic graphical models, the inspiration for the 
+    message-passing operations crucial to the ways GNNs learn. 
+
+    Here, we propose to take a step back. What concrete results about molecules 
+    can we derive from the lighter-weight, more rigorous methods of 
+    probabilistic graphical models? First, how we can represent molecules as 
+    data structures amenable for processing? As opposed to a medical diagnosis 
+    system, for example, where the set of random variables and their 
+    relationships remain for the most part constant, molecules are innumerably 
+    unique with vastly differing structures. Second, how can we perform 
+    inference on molecules? What conclusions can we draw and what significance 
+    might they have for the types of inquiries a chemist might make. 
+    Third, how does our approach lend itself to the types of deep learning that 
+    are the state of the art today?
+
+    With this in mind, we turn to the specifics of this study. As stated, the 
+    technical challenges will revolve around useful representation of dynamic 
+    molecular data as graphical models. The development of methods for doing 
+    this will form the bulk of our technical efforts, and might guide our 
+    inquiry so as to be feasible. The success of our approaches will be 
+    evaluated against empirical data from experiments, rule-based calculations, 
+    et cetera. For example, a property prediction task might be benchmarked by 
+    values computed in vitro. The data we need can be sourced from the wealth of 
+    both experimental and structure data available open source. For example, the 
+    ZINC19, QM9, and GDB13 datasets provide various traunches of molecular 
+    structure data, as well as some property measurements. 
+
+    The timeline for this project is as follows: 3 weeks of research and 
+    preparation; 1 week for final implementation and evaluation; 1 week for 
+    synthesizing the report. 
+    
+\end{abstract}
+
+\end{document}
