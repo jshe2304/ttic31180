@@ -1,0 +1,156 @@
+\documentclass{article}
+
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2023
+
+
+% ready for submission
+\usepackage[preprint]{neurips_2023}
+
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2023}
+
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2023}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2023}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+
+\title{Theory and Methods for the Ferromagnetic Ising Model}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{
+    Jay Shen \\
+    Department of Physics \\
+    University of Chicago\\
+    Chicago, IL 60637 \\
+    \texttt{jshe@uchicago.edu} \\
+    \And
+    Mark Lee \\
+    Department of Statistics \\
+    University of Chicago\\
+    Chicago, IL 60637 \\
+    \texttt{markyl@uchicago.edu} \\
+}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+The Ising model is a historically important problem in statistical mechanics. 
+Although it was originally proposed as a crude approximation of ferromagnetic 
+phenomena, it furnished statistical mechanics, and later probabilistic science 
+as whole, with a new paradigm of graph-based modeling that would prove 
+influential.
+Especially in the distilled, theoretical study of probabilistic graphical 
+models (PGMs), which today is its own field, many methods developed for Ising models 
+and spin-glasses have been repurposed and reinterpreted, as have the rich 
+physical vocabulary of energies, entropy, and partition functions. 
+
+In this paper, we pay homage to the Ising model by applying modern methods to 
+the original problem of ferromagnetism. 
+We discuss the theory of the Ising model both from a PGMs and statistical 
+mechanics point of view, examining the correspondence. 
+We then evaluate a number of approaches to inference—Markov Chain Monte Carlo, 
+belief propagation, and variational inference. 
+Finally, we show the successes and limitations of the Ising model in the context 
+of physical phenomena. 
+
+\end{abstract}
+
+
+\section{Theory of the Ising Model}
+
+A particle with magnetic moment $\vec{\mu}$ in an external magnetic field 
+$\vec{B}$ has potential energy:
+\[U = - \vec{\mu} \cdot \vec{B}\]
+A particle also creates an instrinsic magnetic field defined by magnetic moment 
+$\vec{\mu}$. 
+The pairwise interactions between particles, described by exchange constants 
+$J_{ij}$, thus also have potential energy:
+\[U = - J_{ij} \vec{\mu_1} \cdot \vec{\mu_2}\]
+We will ignore the short-range Pauli exclusion interactions. 
+
+Now, consider a collection of particles $\vec{\mu_i}$ in the prescence of an 
+external magnetic field $\vec{B}$. 
+The Hamiltonian, which specifies the total energy of the system, is defined by 
+the sum of all pairwise and all magnetic field energies:
+\begin{equation}\label{exactE}
+    E = -\frac{1}{2}\sum_i \sum_j J_{ij} \vec{\mu_i} \cdot \vec{\mu_j} - \sum_i \vec{\mu_i} \cdot \vec{B}
+\end{equation}
+In most cases, working with this Hamiltonian is intractable. 
+Luckily, we can simplify it by making several strategic assumptions. 
+
+First, we assume all atoms are fermionic spin-$\frac{1}{2}$ and identical. 
+Then the magnetic moments simplify to $\vec{\mu_i} = \mu \sigma_i$, where 
+$\sigma_i \in \{-1, 1\}$ is the spin of the atom. 
+
+Second, we make a mean-field approximation and assume that the atoms are 
+arranged in a regular lattice, and that the strength of pairwise interactions 
+are negligible for non-adjacent pairs.
+
+Coalescing constants, the Hamiltonian reduces to:
+\begin{equation}\label{isingE}
+    E = -J\sum_i \sum_{j \in adj(i)} \sigma_i \sigma_j - \sum_i \sigma_i B_i
+\end{equation}
+Following the Boltzmann distribution, the probability of some state 
+$\vec{\sigma}$ at inverse temperature $\beta$ is:
+\begin{equation} \label{boltzmann}
+    P(\vec{\sigma}) = \frac{1}{Z}e^{-\beta E(\vec{\sigma})} 
+\end{equation}
+
+\section{Sample Based Methods of Inference}
+
+Say we want to test if a transition is favored or not. 
+In the Ising model, a transition is defined by a change in one or more spins. 
+
+Say we flip one spin $\sigma_i$ in $\vec{\sigma}$ to transition to state 
+$\vec{\tau}$. 
+We can measure whether this transition will be favored or not using the 
+Boltzmann distribution. 
+Namely, if $P(\vec{\sigma}') > P(\vec{\sigma})$ then the transition is favored. 
+Alternatively, we could compute the ratio of probabilities. 
+It turns out that for the Ising model this ratio has a nice form:
+\begin{equation}
+    \frac{P(\vec{\sigma}')}{P(\vec{\sigma})} = 
+    \frac{e^{-\beta E(\vec{\sigma}')}}{e^{-\beta E(\vec{\sigma})}} = 
+    e^{-\beta()}
+\end{equation}
+
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{references}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

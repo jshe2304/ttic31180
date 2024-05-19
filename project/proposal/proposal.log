@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.22)  21 APR 2024 23:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.22)  19 MAY 2024 11:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/jshe/School/ttic31180/proposal/project.tex
-(/Users/jshe/School/ttic31180/proposal/project.tex
+**/Users/jshe/School/year2/ttic31180/project/proposal/proposal.tex
+(/Users/jshe/School/year2/ttic31180/project/proposal/proposal.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
@@ -255,8 +255,8 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count284
 \l__pdf_internal_box=\box52
-) (./project.aux)
-\openout1 = `project.aux'.
+) (./proposal.aux)
+\openout1 = `proposal.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
 LaTeX Font Info:    ... okay on input line 62.
@@ -344,9 +344,9 @@ LaTeX Font Info:    ... okay on input line 62.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 62.
-(./project.out) (./project.out)
+(./proposal.out) (./proposal.out)
 \@outlinefile=\write3
-\openout3 = `project.out'.
+\openout3 = `proposal.out'.
 
 LaTeX Info: Redefining \microtypecontext on input line 62.
 Package microtype Info: Applying patch `item' on input line 62.
@@ -405,24 +405,24 @@ Package microtype Info: Loading generic protrusion settings for font family
  [1
 
 
-{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}] (./project.aux)
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}] (./proposal.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-Package rerunfilecheck Info: File `project.out' has not changed.
+Package rerunfilecheck Info: File `proposal.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
  11928 strings out of 474116
- 187888 string characters out of 5743682
+ 187949 string characters out of 5743682
  1939187 words of memory out of 5000000
  34060 multiletter control sequences out of 15000+600000
  580452 words of font info for 107 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,8n,79p,1042b,448s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,8n,79p,1057b,448s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on project.pdf (1 page, 59770 bytes).
+Output written on proposal.pdf (1 page, 59770 bytes).
 PDF statistics:
  30 PDF objects out of 1000 (max. 8388607)
  20 compressed objects within 1 object stream
