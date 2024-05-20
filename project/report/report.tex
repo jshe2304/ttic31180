@@ -128,24 +128,46 @@ $\vec{\sigma}$ at inverse temperature $\beta$ is:
     P(\vec{\sigma}) = \frac{1}{Z}e^{-\beta E(\vec{\sigma})} 
 \end{equation}
 
-\section{Sample Based Methods of Inference}
+\section{Inference on Ising Models}
 
-Say we want to test if a transition is favored or not. 
-In the Ising model, a transition is defined by a change in one or more spins. 
+In most cases, we are interested in maximum a posteriori (MAP) inference on 
+Ising models, namely, the most likely instantiation of variables. 
+In the context of the physical interpretation, this corresponds to finding the 
+equilibrium distribution of spins that minimize the energy. 
 
-Say we flip one spin $\sigma_i$ in $\vec{\sigma}$ to transition to state 
-$\vec{\tau}$. 
-We can measure whether this transition will be favored or not using the 
-Boltzmann distribution. 
-Namely, if $P(\vec{\sigma}') > P(\vec{\sigma})$ then the transition is favored. 
-Alternatively, we could compute the ratio of probabilities. 
-It turns out that for the Ising model this ratio has a nice form:
-\begin{equation}
-    \frac{P(\vec{\sigma}')}{P(\vec{\sigma})} = 
-    \frac{e^{-\beta E(\vec{\sigma}')}}{e^{-\beta E(\vec{\sigma})}} = 
-    e^{-\beta()}
-\end{equation}
+We will now discuss some approaches to MAP inference on Ising models. 
 
+\subsection{Sample Based}
+
+Sample based Monte Carlo methods aim to discover a MAP estimate by repeated 
+sampling from the distribution. 
+Markov Chain Monte Carlo (MCMC) improves on this approach by, at each step, 
+conditioning the distribution on all previous samples and defining a Markov 
+chain of states and transition probabilities. 
+
+In the context of the Ising model, sampling from the conditioned distribution 
+corresponds to flipping spins of some spin state $\vec{\sigma}$ to get some 
+new state $\vec{\sigma}'$. 
+Intuitively, the transition to state $\vec{\sigma}'$ is favorable if 
+$P(\vec{\sigma}') > P(\vec{\sigma})$. 
+Thus, we define the transition "probability" to be:
+\[
+    P_{\vec{\sigma} \rightarrow \vec{\sigma}'}
+    = \frac{P(\vec{\sigma}')}{P(\vec{\sigma})}
+    = e^{-\beta(E(\vec{\sigma}') - E(\vec{\sigma}))} 
+\]
+In the case where only one spin $\sigma_i$ flips, the energy difference in the 
+exponential is:
+\[
+    E(\vec{\sigma}') - E(\vec{\sigma}) = 2 \sigma_i (J \sum_{j \in adj(i)} \sigma_j + B_i)
+\]
+So, we get:
+\[
+    P_{\vec{\sigma} \rightarrow \vec{\sigma}'}
+    = \exp \Bigr [-2 \beta \sigma_i (J \sum_{j \in adj(i)} \sigma_j + B_i) \Bigr ]
+\]
+Our policy is thus: if the transition lowers the energy, accept it. 
+Otherwise, accept it with probability $P_{\vec{\sigma} \rightarrow \vec{\sigma}'}$. 
 
 \newpage
 \bibliographystyle{plain}
