@@ -103,7 +103,7 @@ We will ignore the short-range Pauli exclusion interactions.
 Now, consider a collection of particles $\vec{\mu_i}$ in the prescence of an 
 external magnetic field $\vec{B}$. 
 The Hamiltonian, which specifies the total energy of the system, is defined by 
-the sum of all pairwise and all magnetic field energies:
+the sum of all pairwise and magnetic field energies:
 \begin{equation}\label{exactE}
     E = -\frac{1}{2}\sum_i \sum_j J_{ij} \vec{\mu_i} \cdot \vec{\mu_j} - \sum_i \vec{\mu_i} \cdot \vec{B}
 \end{equation}
@@ -137,7 +137,7 @@ equilibrium distribution of spins that minimize the energy.
 
 We will now discuss some approaches to MAP inference on Ising models. 
 
-\subsection{Sample Based}
+\subsection{Sampling}
 
 Sample based Monte Carlo methods aim to discover a MAP estimate by repeated 
 sampling from the distribution. 
@@ -168,6 +168,14 @@ So, we get:
 \]
 Our policy is thus: if the transition lowers the energy, accept it. 
 Otherwise, accept it with probability $P_{\vec{\sigma} \rightarrow \vec{\sigma}'}$. 
+
+\subsection{Belief Propagation}
+
+Message passing algorithms are another way to compute approximate marginals from 
+graphical models. 
+The Ising model defines implicitly a Gibbs distribution, which factorizes as an 
+undirected graph. 
+
 
 \newpage
 \bibliographystyle{plain}

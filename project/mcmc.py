@@ -1,5 +1,5 @@
 '''
-Implementations of MCMC Algorithms for Inference on Ising Models
+Implementation of MCMC algorithm for inference on Ising models
 '''
 
 import numpy as np

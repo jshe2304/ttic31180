@@ -1,72 +1,142 @@
 '''
-Implementations of Belief Popogation for Inference on Ising Models
+Implementation of belief propagation algorithm for inference on Ising models
 '''
-import numpy as np 
 
-# Initialize messages
-def initialize_messages(h, w):
-    messages = {}
-    for i in range(h):
-        for j in range(w):
-            if i > 0:
-                messages[((i-1, j), (i, j))] = np.array([0.5, 0.5])
-            if i < h - 1:
-                messages[((i+1, j), (i, j))] = np.array([0.5, 0.5])
-            if j > 0:
-                messages[((i, j-1), (i, j))] = np.array([0.5, 0.5])
-            if j < w - 1:
-                messages[((i, j+1), (i, j))] = np.array([0.5, 0.5])
-    return messages
+import numpy as np
 
-# Update messages
-def update_messages(lattice, messages, J, B, beta, num_iterations):
-    h, w = lattice.shape
-    for _ in range(num_iterations):
-        new_messages = {}
-        for (i, j), _ in messages.keys():
-            new_messages[((i, j), (i, (j+1) % w))] = update_message(i, j, (i, (j+1) % w), lattice, messages, J, B, beta)
-            new_messages[((i, j), ((i+1) % h, j))] = update_message(i, j, ((i+1) % h, j), lattice, messages, J, B, beta)
-            new_messages[(((i-1) % h, j), (i, j))] = update_message((i-1) % h, j, i, j, lattice, messages, J, B, beta)
-            new_messages[((i, (j-1) % w), (i, j))] = update_message(i, (j-1) % w, i, j, lattice, messages, J, B, beta)
-        messages = new_messages
-    return messages
+def compute_unary_log_messages(i, j, unary, unary_log_messages):
+    '''
+    Compute messages for U, D, L, R neighbors in log space
+    '''
+    messages = unary_log_messages[i, j]
 
-# Update a single message
-def update_message(i, j, ni, nj, lattice, messages, J, B, beta):
-    h, w = lattice.shape
-    incoming_messages = []
-    for direction in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-        if (ni+direction[0], nj+direction[1]) != (i, j) and (0 <= ni+direction[0] < h) and (0 <= nj+direction[1] < w):
-            incoming_messages.append(messages[((ni+direction[0]) % h, (nj+direction[1]) % w), (ni, nj)])
+    # Log product
+    u = unary + np.sum(messages[(1, 2, 3), :], axis=0)
+    d = unary + np.sum(messages[(0, 2, 3), :], axis=0)
+    l = unary + np.sum(messages[(0, 1, 3), :], axis=0)
+    r = unary + np.sum(messages[(0, 1, 2), :], axis=0)
+
+    return u, d, l, r
+
+def compute_pairwise_log_messages(i, j, pairwise, pairwise_log_messages):
+    '''
+    Compute messages for U, D or L, R neighbors in log space
+    '''
+    # Log product
+    ul = pairwise + pairwise_log_messages[i, j, 0]
+    dr = pairwise + pairwise_log_messages[i, j, 1]
     
-    m_plus = np.exp(beta * (J + B))
-    m_minus = np.exp(beta * (-J - B))
-    for m in incoming_messages:
-        m_plus *= m[1]
-        m_minus *= m[0]
+    # Sum
+    ul = np.sum(np.exp(ul), axis=0)
+    dr = np.sum(np.exp(dr), axis=0)
+    
+    return np.log(ul), np.log(dr)
 
-    total = m_plus + m_minus
-    return np.array([m_minus / total, m_plus / total])
-
-# Compute beliefs from messages
-def compute_beliefs(lattice, messages, beta, B):
-    h, w = lattice.shape
-    beliefs = np.zeros((h, w))
+def step(h, w, unary_potential, pairwise_potential, unary_log_messages, col_pairwise_log_messages, row_pairwise_log_messages):
+    '''
+    Compute and send all messages in log space
+    '''
+    
+    # Send messages from unary nodes
     for i in range(h):
         for j in range(w):
-            m_plus = np.exp(beta * B)
-            m_minus = np.exp(-beta * B)
-            for direction in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-                if 0 <= (i+direction[0]) < h and 0 <= (j+direction[1]) < w:
-                    m_plus *= messages[((i+direction[0]) % h, (j+direction[1]) % w), (i, j)][1]
-                    m_minus *= messages[((i+direction[0]) % h, (j+direction[1]) % w), (i, j)][0]
-            beliefs[i, j] = m_plus / (m_plus + m_minus)
-    return beliefs
+            u, d, l, r = compute_unary_log_messages(i, j, unary_potential, unary_log_messages)
 
-# Belief Propagation Algorithm
-# def belief_propagation(h, w, J, B, beta, num_iterations):
-#     lattice = create_lattice(h, w)
-#     messages = initialize_messages(h, w)
-#     messages = update_messages(lattice, messages, J, B, beta, num_iterations)
-#     beliefs = compute_beliefs(lattice, messages, beta, B)
-#     return beliefs
+            if i > 0: col_pairwise_log_messages[i-1, j, 1] = u # Send message up
+            if i < h-1: col_pairwise_log_messages[i, j, 0] = d # Send message down
+            if j > 0: row_pairwise_log_messages[i, j-1, 1] = l # Send message left
+            if j < w-1: row_pairwise_log_messages[i, j, 0] = r # Send Message right
+
+    # Send messages from column pairwise nodes
+    for i in range(h-1):
+        for j in range(w):
+            u, d = compute_pairwise_log_messages(i, j, pairwise_potential, col_pairwise_log_messages)
+
+            unary_log_messages[i, j, 1] = u # Send up
+            unary_log_messages[i+1, j, 0] = d # Send down
+
+    # Send messages from row pairwise nodes
+    for i in range(h):
+        for j in range(w-1):
+            l, r = compute_pairwise_log_messages(i, j, pairwise_potential, row_pairwise_log_messages)
+
+            unary_log_messages[i, j-1, 3] = u # Send left
+            unary_log_messages[i, j, 2] = d # Send right
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def compute_unary_log_messages(i, j, unary, unary_log_messages):
+    '''
+    Compute messages for U, D, L, R neighbors in log space
+    '''
+    u = unary + np.sum(unary_log_messages[i, j, (1, 2, 3)], axis=0)
+    d = unary + np.sum(unary_log_messages[i, j, (0, 2, 3)], axis=0)
+    l = unary + np.sum(unary_log_messages[i, j, (0, 1, 3)], axis=0)
+    r = unary + np.sum(unary_log_messages[i, j, (0, 1, 2)], axis=0)
+
+    return u, d, l, r
+
+def compute_pairwise_log_messages(i, j, pairwise, pairwise_log_messages):
+    '''
+    Compute messages for U, D or L, R neighbors in log space
+    '''
+    # Log product
+    ul = pairwise + pairwise_log_messages[i, j, 0]
+    dr = pairwise + pairwise_log_messages[i, j, 1]
+    
+    # Sum
+    ul = np.sum(np.exp(ul), axis=0)
+    dr = np.sum(np.exp(dr), axis=0)
+    
+    return np.log(ul), np.log(dr)
+
+def step(h, w, unary_potential, pairwise_potential, unary_log_messages, col_pairwise_log_messages, row_pairwise_log_messages):
+    '''
+    Compute and send all messages in log space
+    '''
+    
+    # Send messages from unary nodes
+    for i in range(h):
+        for j in range(w):
+            u, d, l, r = compute_unary_log_messages(i, j, unary_potential, unary_log_messages)
+
+            if i > 0: col_pairwise_log_messages[i-1, j, 1] = u # Send message up
+            if i < h-1: col_pairwise_log_messages[i, j, 0] = d # Send message down
+            if j > 0: row_pairwise_log_messages[i, j-1, 1] = l # Send message left
+            if j < w-1: row_pairwise_log_messages[i, j, 0] = r # Send Message right
+
+    # Send messages from column pairwise nodes
+    for i in range(h-1):
+        for j in range(w):
+            u, d = compute_pairwise_log_messages(i, j, pairwise_potential, col_pairwise_log_messages)
+
+            unary_log_messages[i, j, 1] = u # Send up
+            unary_log_messages[i+1, j, 0] = d # Send down
+
+    # Send messages from row pairwise nodes
+    for i in range(h):
+        for j in range(w-1):
+            l, r = compute_pairwise_log_messages(i, j, pairwise_potential, row_pairwise_log_messages)
+
+            unary_log_messages[i, j-1, 3] = u # Send left
+            unary_log_messages[i, j, 0] = d # Send right
