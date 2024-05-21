@@ -1,5 +1,7 @@
 \documentclass{minesbeamer}
-\usepackage{movie15}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\input{embed_video.tex}
 \title{Theory and Methods for the Ferromagnetic Ising Model}
 \subtitle{TTIC 31180}
 \author[Jay Shen \and Mark Lee]{Jay Shen \and Mark Lee}
@@ -36,8 +38,8 @@
     \begin{columns}
         \begin{column}{0.6\textwidth}
             \begin{itemize}
-                \item A particle with magnetic moment $\overrightarrow{\mu}$ in an external magnetic field $\overrightarrow{B}$ has potential energy: $$U = -\overrightarrow{\mu}\cdot \overrightarrow{B}$$
-                \item The magnetic moment also creates a magnetic field. The interaction between particles, denoted by exchange constants $J_{ij}$, also have potential energy: $$U = -J_{ij}\overrightarrow{\mu_1}\cdot\overrightarrow{\mu_2}$$
+                \item A particle with magnetic moment $\vec{\mu}$ in an external magnetic field $\vec{B}$ has potential energy: $$U = -\vec{\mu}\cdot \vec{B}$$
+                \item The magnetic moment also creates a magnetic field. The interaction between particles, denoted by exchange constants $J_{ij}$, also have potential energy: $$U = -J_{ij}\vec{\mu_1}\cdot\vec{\mu_2}$$
             \end{itemize}
         \end{column}
         \begin{column}{0.4\textwidth}
@@ -52,7 +54,7 @@
 \begin{frame}{Theory of the Ising Model cont.}
     \centering
     \begin{itemize}
-        \item So now we have a collection of particles in the presence of an external magnetic field. The Hamiltonian, which specifies the total energy of the system, is defined by the sum of all pairwise and all magnetic field energies:$$E = -\frac{1}{2}\sum_{i,j}J_{ij}\overrightarrow{\mu_i}\cdot\overrightarrow{\mu_j}-\sum_i \overrightarrow{\mu_i}\cdot\overrightarrow{B}$$
+        \item So now we have a collection of particles in the presence of an external magnetic field. The Hamiltonian, which specifies the total energy of the system, is defined by the sum of all pairwise and all magnetic field energies:$$E = -\frac{1}{2}\sum_{i,j}J_{ij}\vec{\mu_i}\cdot\vec{\mu_j}-\sum_i \vec{\mu_i}\cdot\vec{B}$$
         \item This is intractable, and we can simplify it through several assumptions. By coalescing constants,$$E=-J\sum_i\sum_{j\in adj(i)}\sigma_i\sigma_j -\sum_i \sigma_i B_i$$
     \end{itemize}
 \end{frame}
@@ -60,19 +62,59 @@
 \begin{frame}{Theory of the Ising Model cont.}
     \centering
     \begin{itemize}
-        \item Following the Boltzmann distribution, the probability of some state $\overrightarrow{\sigma}$ at inverse temperature $\beta$ is:$$P(\overrightarrow{\sigma}) = \frac{1}{Z}e^{-\beta E(\overrightarrow{\sigma})}$$
+        \item Following the Boltzmann distribution, the probability of some state $\vec{\sigma}$ at inverse temperature $\beta$ is:$$P(\vec{\sigma}) = \frac{1}{Z}e^{-\beta E(\vec{\sigma})}$$
     \end{itemize}
 \end{frame}
 
 \section{Inference Using the Ising Model}
 
-\begin{frame}{Make your presentation interactive}
-    \begin{cublock}[What about a question to the audience?]
-        \begin{overlayarea}{\textwidth}{\baselineskip}
-            \only<2->{Followed by the answer.}
-        \end{overlayarea}
-    \end{cublock}
+\begin{frame}{Inference Using the Ising Model}
+    \centering
+    \begin{itemize}
+        \item The motivation to perform inference on the ising model is to find the equilibrium distribution of spins that minimize the energy
+        \item In our project, we tested two commonly used methods: MCMC and Belief Propagation.
+    \end{itemize}
 \end{frame}
+
+\begin{frame}{Markov Chain Monte Carlo (MCMC)}
+    \centering
+    \begin{itemize}
+        \item Sampling from the conditioned distribution corresponds to flipping some spins of some spin state $\vec{\sigma}$ to get a new spin state $\vec{\sigma}\textsc{\char13}$. If the new spin state is "more favorable" than the previous one, then we will flip to the new state. Thus, we can write the "probability" as: $$P_{\vec{\sigma} \to \vec{\sigma}\textsc{\char13}} = \frac{P(\vec{\sigma}\textsc{\char13})}{P(\vec{\sigma})}= e^{-\beta(E(\vec{\sigma}\textsc{\char13})-E(\vec{\sigma}))}$$ 
+        \item In the case where only one spin $\sigma_i$ flips, we can write the energy difference in the exponential is $\displaystyle E(\vec{\sigma}\textsc{\char13})-E(\vec{\sigma}) = 2\sigma_i(J \sum_{j\in adj(i)} \sigma_j + B_i )$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Markov Chain Monte Carlo (MCMC) cont.}
+    \centering
+    \begin{itemize}
+        \item The final expression is therefore: $$P_{\vec{\sigma} \to \vec{\sigma}\textsc{\char13}} = exp(-2\beta\sigma_i(J \sum_{j\in adj(i)} \sigma_j + B_i )))$$ 
+        \item If the transition lowers the energy, accept it. Otherwise, accept it with probability $P_{\vec{\sigma} \to \vec{\sigma}\textsc{\char13}}$ 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Results of MCMC}
+    \centering
+    \begin{figure}
+    \includegraphics[width = 10 cm, height = 5cm]{mcmc.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Results of MCMC cont.}
+    \centering
+    \begin{figure}
+    \href{https://drive.google.com/file/d/1HwG_GxrhNblpf6vEiYciI8tJVZLoPw_y/view?usp=drive_link}{\includegraphics[width = 5 cm, height = 5cm]{mcmc.png}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Belief Propagation}
+    \centering
+    \begin{itemize}
+        \item
+    \end{itemize}
+\end{frame}{Belief Propagation}
+
+
+
 
 % Q&A
 \begin{frame}[standout]
