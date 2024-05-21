@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \input{embed_video.tex}
+\graphicspath{{../graphics}}
 \title{Theory and Methods for the Ferromagnetic Ising Model}
 \subtitle{TTIC 31180}
 \author[Jay Shen \and Mark Lee]{Jay Shen \and Mark Lee}
@@ -45,7 +46,7 @@
         \begin{column}{0.4\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[height=0.6\textheight]{F5.png}
+                \includegraphics[height=0.6\textheight]{3Dising.png}
             \end{figure}
         \end{column}
     \end{columns}
@@ -108,13 +109,37 @@
 
 \begin{frame}{Belief Propagation}
     \centering
+    The joint distribution of the Ising model is:
+    \[
+    P(\vec{\sigma}) = \exp \Bigr [ \beta \Bigr ( J\sum_i \sum_{j \in adj(i)} \sigma_i \sigma_j + \sum_i \sigma_i B_i \Bigr ) \Bigr ]
+    \]
+    This factors nicely as:
+    \[
+    P(\vec{\sigma}) = \prod_i \prod_{j \in adj(i)} \exp (J \beta \sigma_i \sigma_j) \cdot \prod_i \exp(\sigma_i \beta B_i)
+    \]
+    We can then define a factor graph of unary and pairwise potentials and use 
+    belief propagation for inference. 
+\end{frame}
+
+\begin{frame}{Belief Propagation cont. }
+    Put videos here. 
+\end{frame}
+
+\begin{frame}{Sample-Based vs Belief Propagation}
     \begin{itemize}
-        \item
+        \item 
+        Sample based inference has a hard time converging
+        \item 
+        Belief propagation gives a distribution while MCMC gives a set of 
+        samples
+        \item MCMC is more physically intuitive
     \end{itemize}
-\end{frame}{Belief Propagation}
+\end{frame}
 
-
-
+\begin{frame}{Discussion}
+    We simulate some phase transitions using MCMC:
+    \includegraphics[height=0.6\textheight]{mcmc_phase.png}
+\end{frame}
 
 % Q&A
 \begin{frame}[standout]

@@ -1,0 +1,2 @@
+\beamer@sectionintoc {2}{Review of the Ising Model}{3}{0}{1}
+\beamer@sectionintoc {3}{Inference Using the Ising Model}{8}{0}{2}
