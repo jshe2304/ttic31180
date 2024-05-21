@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1716306158.56475 "/Users/jshe/School/year2/ttic31180/project/presentation/main.tex" "main.pdf" "main" 1716306161.62635 0
+["pdflatex"] 1716306282.51355 "/Users/jshe/School/year2/ttic31180/project/presentation/main.tex" "main.pdf" "main" 1716306285.54439 0
   "../graphics/3Dising.png" 1716224343.62786 471753 a150996e8bf66b4abd82455784a79df6 ""
   "../graphics/bp.png" 1716301837.50735 9318 bf5442df48a9e2c274677f6529212682 ""
   "../graphics/mcmc.png" 1716281229.25721 1721384 7225a584a7ee04ddc603a85cf817c3ab ""
-  "../graphics/mcmc_phase.png" 1716306127.47923 33509 d209f5fde6f828dddad9b9f7278c009e ""
+  "../graphics/mcmc_phase.png" 1716306265.94287 35591 4d890243bddf506ee60ad35e8b7f983a ""
   "/Users/jshe/School/year2/ttic31180/project/presentation/main.tex" 1716304200.2086 6436 a2b665ff01cb228b90fbc44249b9812f ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -313,11 +313,11 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1711122429 8221435 87475a11a0e16feece63157929773497 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "embed_video.tex" 1716279296.62273 2220 5773490e916e0abe83ffc8b8724a2d32 ""
-  "main.aux" 1716306161.43252 3572 3bc982173030609d3b52387548a1328f "pdflatex"
-  "main.nav" 1716306161.43387 2275 4f58bbac981333e277771d6d52092a9e "pdflatex"
-  "main.out" 1716306161.4336 468 c1561562acf2690f555ce886ba58ffda "pdflatex"
+  "main.aux" 1716306285.3535 3572 3bc982173030609d3b52387548a1328f "pdflatex"
+  "main.nav" 1716306285.3548 2275 4f58bbac981333e277771d6d52092a9e "pdflatex"
+  "main.out" 1716306285.35453 468 c1561562acf2690f555ce886ba58ffda "pdflatex"
   "main.tex" 1716304200.2086 6436 a2b665ff01cb228b90fbc44249b9812f ""
-  "main.toc" 1716306161.43391 128 31c6c7b48e3aa1190ddb36b86be4346b "pdflatex"
+  "main.toc" 1716306285.35483 128 31c6c7b48e3aa1190ddb36b86be4346b "pdflatex"
   "minesbeamer.cls" 1716224343.65318 10729 612918b4ce0ab5a01d0a1448942d5a9b ""
   "monte-carlo-ising-2.png" 1716224343.65348 18082 652d4e37ec19adaf9aa42b04ba2ac1b8 ""
   (generated)
