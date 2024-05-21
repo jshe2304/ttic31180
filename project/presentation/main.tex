@@ -80,8 +80,8 @@
 \begin{frame}{Markov Chain Monte Carlo (MCMC)}
     \centering
     \begin{itemize}
-        \item Sampling from the conditioned distribution corresponds to flipping some spins of some spin state $\vec{\sigma}$ to get a new spin state $\vec{\sigma}\textsc{\char13}$. If the new spin state is "more favorable" than the previous one, then we will flip to the new state. Thus, we can write the "probability" as: $$P_{\vec{\sigma} \to \vec{\sigma}\textsc{\char13}} = \frac{P(\vec{\sigma}\textsc{\char13})}{P(\vec{\sigma})}= e^{-\beta(E(\vec{\sigma}\textsc{\char13})-E(\vec{\sigma}))}$$ 
-        \item In the case where only one spin $\sigma_i$ flips, we can write the energy difference in the exponential is $\displaystyle E(\vec{\sigma}\textsc{\char13})-E(\vec{\sigma}) = 2\sigma_i(J \sum_{j\in adj(i)} \sigma_j + B_i )$
+        \item Sampling from the conditioned distribution corresponds to flipping some spins of some spin state $\vec{\sigma}$ to get a new spin state $\vec{\sigma}\textsc{\char13}$. If the new spin state is more probable than the previous one, then we flip to the new state. We write the transition "probability" as: $$P_{\vec{\sigma} \to \vec{\sigma}\textsc{\char13}} = \frac{P(\vec{\sigma}\textsc{\char13})}{P(\vec{\sigma})}= e^{-\beta(E(\vec{\sigma}\textsc{\char13})-E(\vec{\sigma}))}$$ 
+        \item In the case where only one spin $\sigma_i$ flips, we can write the energy difference in the exponential as $\displaystyle E(\vec{\sigma}\textsc{\char13})-E(\vec{\sigma}) = 2\sigma_i(J \sum_{j\in adj(i)} \sigma_j + B_i )$
     \end{itemize}
 \end{frame}
 

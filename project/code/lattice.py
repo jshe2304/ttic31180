@@ -43,6 +43,8 @@ def energy(lattice, J, B):
     '''
     Compute Ising model Hamiltonian
     '''
+    n = lattice.shape[0] * lattice.shape[1]
+    
     S = 0
     for i in range(lattice.shape[0]):
         for j in range(lattice.shape[1]):
@@ -51,7 +53,7 @@ def energy(lattice, J, B):
             
             S += lattice[i, j] * s
             
-    return -J * S - np.sum(B * lattice)
+    return -J * S - np.sum(B * lattice) / n
 
 
 def render_timesteps(timesteps, fps, interval, fname):
