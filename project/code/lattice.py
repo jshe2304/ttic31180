@@ -31,15 +31,23 @@ def gaussian_B(h, w):
 
     return B
 
+def sample_from_beliefs(lattice):
+    sample = np.empty(lattice.shape)
+    
+    for i in range(lattice.shape[0]):
+        for j in range(lattice.shape[1]):
+            sample[i, j] = np.random.choice((-1, 1), p=lattice[i, j])
+            
+    return sample
 
-def magnetization(lattice):
+def sample_magnetization(lattice):
     '''
-    Compute bormalized magnetization
+    Compute normalized magnetization
     '''
     n = lattice.shape[0] * lattice.shape[1]
     return np.sum(lattice)/n
 
-def energy(lattice, J, B):
+def sample_energy(lattice, J, B):
     '''
     Compute Ising model Hamiltonian
     '''
@@ -53,8 +61,7 @@ def energy(lattice, J, B):
             
             S += lattice[i, j] * s
             
-    return -J * S - np.sum(B * lattice) / n
-
+    return (-J * S - np.sum(B * lattice)) / n
 
 def render_timesteps(timesteps, fps, interval, fname):
     '''

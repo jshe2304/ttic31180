@@ -6,7 +6,7 @@ import numpy as np
 
 def compute_unary_messages(i, j, unary_potentials, unary_messages):
     '''
-    Compute messages for U, D, L, R neighbors in log space
+    Compute messages for U, D, L, R neighbors
     '''
     
     potential = unary_potentials[i, j]
@@ -28,7 +28,7 @@ def compute_unary_messages(i, j, unary_potentials, unary_messages):
 
 def compute_pairwise_messages(i, j, pairwise, pairwise_messages):
     '''
-    Compute messages for U, D or L, R neighbors in log space
+    Compute messages for U, D or L, R neighbors
     '''
     
     messages = pairwise_messages[i, j]
@@ -49,7 +49,7 @@ def compute_pairwise_messages(i, j, pairwise, pairwise_messages):
 
 def step(h, w, unary_potentials, pairwise_potential, unary_messages, col_pairwise_messages, row_pairwise_messages):
     '''
-    Compute and send all messages in log space
+    Compute and send all messages
     '''
     
     # Send messages from unary nodes
@@ -77,16 +77,59 @@ def step(h, w, unary_potentials, pairwise_potential, unary_messages, col_pairwis
 
             unary_messages[i, j, -1] = l # Send left
             unary_messages[i, j+1, -2] = r # Send right
+            
+###########################################################################
+###########################################################################
+###########################################################################
 
-def compute_unary_beliefs(h, w, unary_potentials, unary_messages):
-    beliefs = np.empty((h, w, 2))
-
+def compute_unary_beliefs(unary_potentials, unary_messages):
+    '''
+    Compute normalized unary beliefs. 
+    Belief is equal to product of node potential and messages
+    '''
+    h, w, *_ = unary_messages.shape
+    beliefs = np.empty(
+        (h, w, 2)
+    )
+    
+    # Product
     for i in range(h):
         for j in range(w):
-            prod = unary_potentials[i, j] * unary_messages[i, j, 0] * unary_messages[i, j, 1]
+            prod = unary_potentials[i, j] * np.prod(unary_messages[i, j], axis=0)
             beliefs[i, j] = prod
 
+    # Normalize
+    beliefs /= np.expand_dims(np.sum(beliefs, axis=-1), axis=-1)
+    
     return beliefs
 
-def normalize_beliefs(beliefs):
-    return (beliefs/np.expand_dims(np.sum(beliefs, axis=-1), axis=-1))[:, :, 1]
+def compute_pairwise_beliefs(pairwise_potential, pairwise_messages):
+    '''
+    Compute normalize pairwise beliefs. 
+    Belief is equal to product of node potential and messages
+    '''
+    h, w, *_ = pairwise_messages.shape
+    beliefs = np.empty(
+        (h, w, 2, 2)
+    )
+    
+    # Product
+    for i in range(pairwise_messages.shape[0]):
+        for j in range(w):
+            prod = pairwise_potential * pairwise_messages[i, j, 0] * pairwise_messages[i, j, 1].T
+            beliefs[i, j] = prod
+            
+    # Normalize
+    beliefs /= np.expand_dims(np.sum(beliefs, axis=(2, 3)), axis=(-1, -2))
+    
+    return beliefs
+
+def compute_beliefs(unary_potentials, pairwise_potential, unary_messages, col_pairwise_messages, row_pairwise_messages):
+    '''
+    Nice wrapper for computing all beliefs
+    '''
+    return (
+        compute_unary_beliefs(unary_potentials, unary_messages), 
+        compute_pairwise_beliefs(pairwise_potential, col_pairwise_messages), 
+        compute_pairwise_beliefs(pairwise_potential, row_pairwise_messages)
+    )
