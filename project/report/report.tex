@@ -240,13 +240,13 @@ We believe this best simulates the actual equilibration process.
         \includegraphics[width=\textwidth]{report_mcmc_gaussian}
         \centering
         \caption{\textit{Spin lattice samples from various points in the sampling process}}
-        \label{fig:1a}
+        \label{fig:mcmc_gaussian_a}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=\textwidth]{report_mcmc_gaussian_measurables}
         \centering
         \caption{\textit{Measurables of samples during the sampling process}}
-        \label{fig:1b}
+        \label{fig:mcmc_gaussian_b}
     \end{subfigure}
     \centering
     \caption{\textit{
@@ -258,15 +258,24 @@ We believe this best simulates the actual equilibration process.
     \label{fig:mcmc_gaussian}
 \end{figure}
 
-In the quenching simulation conducted in \ref{fig:mcmc_gaussian}, we observe 
-several expected phenomena. 
+In the MCMC quenching simulation conducted in \ref{fig:mcmc_gaussian}, we 
+observe several expected phenomena. 
 The pairwise interactions are clearly exhibited by the clusters of aligned spins 
 which form and coalesce as the number of steps grows. 
 The prescence of the magnetic field also seems to magnetize the entire lattice, 
-as indicated both by the convergence on full spin alignment in \ref{fig:1a}, 
-and the increasing magnetization measured in \ref{fig:1b}
+as indicated both by the convergence on full spin alignment in 
+\ref{fig:mcmc_gaussian_a}, and the increasing magnetization measured in 
+\ref{fig:mcmc_gaussian_b}. 
 
-Plots describing additional simulations are shown in Supporting Materials. 
+Note that computing the measurables for \ref{fig:mcmc_gaussian_a} and 
+\ref{fig:mcmc_gaussian_b} is easy given the explicit spin lattice states 
+provided by the sampling process. 
+The magnetization is simply the average spin. 
+The energy is computed using \ref{isingE}. 
+We will see that these measurables are not so easily obtained when using belief 
+propagation. 
+
+Plots describing additional simulations are shown in the Supporting Materials. 
 
 
 
@@ -308,22 +317,22 @@ We then run a standard belief propagation routine.
         \includegraphics[width=\textwidth]{report_bp_gaussian}
         \centering
         \caption{\textit{Spin lattice beliefs from various steps in the belief propagation process}}
-        \label{fig:1a}
+        \label{fig:bp_gaussian_a}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=\textwidth]{report_mcmc_gaussian_measurables}
         \centering
         \caption{\textit{Measurables of samples during the sampling process}}
-        \label{fig:1b}
+        \label{fig:bp_gaussian_b}
     \end{subfigure}
     \centering
     \caption{\textit{
-        MCMC quenching of an initial randomly generated $256 \times 256$ spin 
-        lattice sample with $J = 0.5$, $\beta = 10$, and a centered Gaussian 
+        Belief propagation to estimate marginal distributions of spin lattice 
+        with $J = 0.5$, $\beta = 10$, and a centered Gaussian 
         magnetic field
         $B_{ij} = 0.01 \exp [-\frac{1}{1024}((i-128)^2 + (j-128)^2)]$. 
     }}
-    \label{fig:mcmc_gaussian}
+    \label{fig:bp_gaussian}
 \end{figure}
 
 \newpage

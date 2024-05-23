@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.22)  23 MAY 2024 01:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.22)  23 MAY 2024 09:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -292,23 +292,7 @@ Package caption Info: New subtype `subtable' on input line 238.
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count288
 \l__pdf_internal_box=\box52
-) (./report.aux
-
-LaTeX Warning: Label `fig:1a' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:1a' multiply defined.
-
-
-LaTeX Warning: Label `fig:1b' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:1b' multiply defined.
-
-
-LaTeX Warning: Label `fig:mcmc_gaussian' multiply defined.
-
-)
+) (./report.aux)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
@@ -478,40 +462,39 @@ File: ../graphics/report_mcmc_gaussian_measurables.png Graphic file (type png)
 Package pdftex.def Info: ../graphics/report_mcmc_gaussian_measurables.png  used on input line 246.
 (pdftex.def)             Requested size: 397.48499pt x 158.99448pt.
  [2]
-<../graphics/report_bp_gaussian.png, id=49, 1084.05pt x 361.35pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3 <../graphics/report_mcmc_gaussian.png> <../graphics/report_mcmc_gaussian_measurables.png>]
+<../graphics/report_bp_gaussian.png, id=61, 1084.05pt x 361.35pt>
 File: ../graphics/report_bp_gaussian.png Graphic file (type png)
 <use ../graphics/report_bp_gaussian.png>
-Package pdftex.def Info: ../graphics/report_bp_gaussian.png  used on input line 308.
+Package pdftex.def Info: ../graphics/report_bp_gaussian.png  used on input line 317.
 (pdftex.def)             Requested size: 397.48499pt x 132.4954pt.
 File: ../graphics/report_mcmc_gaussian_measurables.png Graphic file (type png)
 <use ../graphics/report_mcmc_gaussian_measurables.png>
-Package pdftex.def Info: ../graphics/report_mcmc_gaussian_measurables.png  used on input line 314.
+Package pdftex.def Info: ../graphics/report_mcmc_gaussian_measurables.png  used on input line 323.
 (pdftex.def)             Requested size: 397.48499pt x 158.99448pt.
- [3 <../graphics/report_mcmc_gaussian.png> <../graphics/report_mcmc_gaussian_measurables.png>] [4 <../graphics/report_bp_gaussian.png>] (./report.aux)
+ [4 <../graphics/report_bp_gaussian.png>] (./report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: E4FD9E7EEF9E3D7152C77A690A843F6C;693.
  ) 
 Here is how much of TeX's memory you used:
- 13829 strings out of 474116
- 224052 string characters out of 5743682
+ 13840 strings out of 474116
+ 224265 string characters out of 5743682
  1941187 words of memory out of 5000000
- 35883 multiletter control sequences out of 15000+600000
- 587814 words of font info for 130 fonts, out of 8000000 for 9000
+ 35888 multiletter control sequences out of 15000+600000
+ 588169 words of font info for 134 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,8n,79p,1053b,588s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (4 pages, 404607 bytes).
+Output written on report.pdf (4 pages, 405299 bytes).
 PDF statistics:
- 120 PDF objects out of 1000 (max. 8388607)
- 85 compressed objects within 1 object stream
+ 123 PDF objects out of 1000 (max. 8388607)
+ 88 compressed objects within 1 object stream
  17 named destinations out of 1000 (max. 500000)
  34864 words of extra memory for PDF output out of 35830 (max. 10000000)
 
