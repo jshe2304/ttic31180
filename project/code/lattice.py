@@ -31,23 +31,33 @@ def gaussian_B(h, w):
 
     return B
 
-def sample_from_beliefs(lattice):
-    sample = np.empty(lattice.shape)
+def sample_from_beliefs(lattice, n_samples=1):
+    '''
+    Generate microstate samples from marginal beliefs
+    '''
+    samples = np.empty((n_samples, lattice.shape[0], lattice.shape[1]))
     
-    for i in range(lattice.shape[0]):
-        for j in range(lattice.shape[1]):
-            sample[i, j] = np.random.choice((-1, 1), p=lattice[i, j])
-            
-    return sample
+    for n in range(n_samples):
+        for i in range(lattice.shape[0]):
+            for j in range(lattice.shape[1]):
+                samples[n, i, j] = np.random.choice((-1, 1), p=lattice[i, j])
 
-def sample_magnetization(lattice):
+    return samples
+
+def mean_value(lattices, measurable, *args):
+    '''
+    Mean value of measurable value over set of lattices
+    '''
+    return np.mean([measurable(lattice, *args) for lattice in lattices])
+
+def magnetization(lattice):
     '''
     Compute normalized magnetization
     '''
     n = lattice.shape[0] * lattice.shape[1]
     return np.sum(lattice)/n
 
-def sample_energy(lattice, J, B):
+def energy(lattice, J, B):
     '''
     Compute Ising model Hamiltonian
     '''

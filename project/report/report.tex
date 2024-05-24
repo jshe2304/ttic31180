@@ -34,6 +34,8 @@
 \usepackage{xcolor}         % colors
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
 
 \title{Theory and Methods for the Ferromagnetic Ising Model}
 
@@ -71,35 +73,35 @@
 \begin{abstract}
 
 The Ising model is a historically important problem in statistical mechanics. 
-Although it was originally proposed as a crude approximation of ferromagnetic 
+Although it was originally proposed as a crude approximation of magnetic 
 phenomena, it furnished statistical mechanics, and later probabilistic science 
 as whole, with a new paradigm of graph-based modeling that would prove 
 influential.
 Especially in the distilled, theoretical study of probabilistic graphical 
-models (PGMs), which today is its own field, many methods developed for Ising models 
-and spin-glasses have been repurposed and reinterpreted, as have the rich 
-physical vocabulary of energies, entropy, and partition functions. 
+models (PGMs), which today is its own field, many methods developed for Ising 
+models and spin-glasses—as well as the rich physical vocabulary of energies, 
+entropy, and partition functions—have been repurposed and reinterpreted for 
+application towards a wide variety of problems. 
 
-In this paper, we pay homage to the Ising model by applying modern methods to 
-the original problem of ferromagnetism. 
-We discuss the theory of the Ising model both from a PGMs and statistical 
-mechanics point of view, examining the correspondence. 
+In this paper, we pay homage to the Ising model by applying modern computational 
+solutions towards the original problem of magnetism. 
+We discuss the theory of the Ising model from a physical perspective, and 
+examine its correspondence with PGMs theory. 
 We then evaluate two approaches to inference—Markov Chain Monte Carlo and
 belief propagation. 
-Finally, we show the successes and limitations of the Ising model in the context 
-of physical phenomena. 
-
+Finally, we show the success of the Ising model at modeling some physical 
+phenomena, and discuss its limitations. 
+%
+%
+%
+%
+%
 \end{abstract}
-
-
-
-
-
-
-
-
-
-
+%
+%
+%
+%
+%
 \section{Theory of the Ising Model}
 
 The prevailing physical theory explains magnetism as a consequence of the intrinsic 
@@ -151,34 +153,24 @@ Coalescing constants, the Hamiltonian reduces nicely to:
 \begin{equation}\label{isingE}
     E(\vec{\sigma}) = -J\sum_i \sum_{j \in adj(i)} \sigma_i \sigma_j - \sum_i \sigma_i B_i
 \end{equation}
-The Boltzmann distribution give a probability of some state $\vec{\sigma}$ at 
-inverse temperature $\beta$:
+The Boltzmann distribution gives a probability of some microstate $\vec{\sigma}$ 
+at inverse temperature $\beta$:
 \begin{equation} \label{boltzmann}
     P(\vec{\sigma}) = \frac{1}{Z}e^{-\beta E(\vec{\sigma})} 
 \end{equation}
 The physical theory of the Ising model has now been developed and we can turn to 
-inference as a pure PGMs task. 
-
-
-
-
-
-
-
-
-
-
+the purely abstract task of inference on a PGM. 
+%
+%
+%
+%
+%
 \section{Inference on Ising Models}
-
-
-
-
-
-
-
-
-
-
+%
+%
+%
+%
+%
 In many cases, the Ising model of ferromagnetism is used to produce physical 
 measurables like energy and magnetization. 
 For example, Ernst Ising's original inquiry asked if the Ising model was capable 
@@ -189,29 +181,30 @@ Now, these measurables require marginal distributions in order to compute, for
 example, the unary and pairwise energies. 
 We will now examine two approaches to computing these marginals—Markov Chain 
 Monte Carlo and belief propagation. 
-
-
-
-
-
+%
+%
+%
+%
+%
 \subsection{Markov Chain Monte Carlo}
-
-
-
-
-
+%
+%
+%
+%
+%
 Monte Carlo algorithms produce better and better estimates by repeated sampling 
 from the true distribution. 
 When the true distribution is not immediately available for sampling, employing 
 Markov Chain Monte Carlo defines an approximate distribution that hopefully, 
 during sampling, approaching the true distribution. 
 
-In the context of the Ising model, the Markov states proceeding from some state 
-of spins $\vec{\sigma}$ are created by flipping any spin $\sigma_i$ in 
+In the context of the Ising model, the Markov states proceeding from some 
+microstate of spins $\vec{\sigma}$ are created by flipping any spin $\sigma_i$ in 
 $\vec{\sigma}$. 
-We can sample from these states by choosing a random $\sigma_i$ to flip. 
+We can sample from these adjacent microstates by choosing a random $\sigma_i$ to 
+flip. 
 Since we want to move towards the true, equilibrium distribution, we only 
-transition to the new state $\vec{\sigma}'$ if 
+transition to the new microstate $\vec{\sigma}'$ if 
 $P(\vec{\sigma}') > P(\vec{\sigma})$. 
 Using the formula for the Boltzmann distribution, this criterion is equivalent 
 to $E(\vec{\sigma}') < E(\vec{\sigma})$. 
@@ -222,8 +215,8 @@ $\Delta E = E(\vec{\sigma}') - E(\vec{\sigma})$, which has a nice form:
     \Delta E = E(\vec{\sigma}') - E(\vec{\sigma}) = 2 \sigma_i (J \sum_{j \in adj(i)} \sigma_j + B_i)
 \]
 If $\Delta E < 0$, we transition states. 
-If $\Delta E \geq 0$, we will transition states with probability defined by the 
-Boltzmann factor:
+If $\Delta E \geq 0$, we will transition microstates with probability defined by 
+the Boltzmann factor:
 \[
     \frac{P(\vec{\sigma}')}{P(\vec{\sigma})}
     = e^{-\beta \Delta E} 
@@ -239,7 +232,10 @@ We believe this best simulates the actual equilibration process.
     \begin{subfigure}{\textwidth}
         \includegraphics[width=\textwidth]{report_mcmc_gaussian}
         \centering
-        \caption{\textit{Spin lattice samples from various points in the sampling process}}
+        \caption{\textit{
+            Spin lattice sample microstates from various points in the sampling 
+            process
+        }}
         \label{fig:mcmc_gaussian_a}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
@@ -257,7 +253,6 @@ We believe this best simulates the actual equilibration process.
     }}
     \label{fig:mcmc_gaussian}
 \end{figure}
-
 In the MCMC quenching simulation conducted in \ref{fig:mcmc_gaussian}, we 
 observe several expected phenomena. 
 The pairwise interactions are clearly exhibited by the clusters of aligned spins 
@@ -268,25 +263,32 @@ as indicated both by the convergence on full spin alignment in
 \ref{fig:mcmc_gaussian_b}. 
 
 Note that computing the measurables for \ref{fig:mcmc_gaussian_a} and 
-\ref{fig:mcmc_gaussian_b} is easy given the explicit spin lattice states 
+\ref{fig:mcmc_gaussian_b} is easy given the explicit spin lattice microstates 
 provided by the sampling process. 
 The magnetization is simply the average spin. 
 The energy is computed using \ref{isingE}. 
-We will see that these measurables are not so easily obtained when using belief 
-propagation. 
 
-Plots describing additional simulations are shown in the Supporting Materials. 
+\begin{figure}
+    \includegraphics[width=\textwidth]{mcmc_phase}
+    \label{fig:mcmc_phase}
+\end{figure}
+
+Using this MCMC inference scheme, we ran an experiment (Figure 
+\ref{fig:mcmc_gaussian}) simulating the phase transitions expected of the 2D 
+Ising model. 
 
 
-
-
-
+%
+%
+%
+%
+%
 \subsection{Belief Propagation}
-
-
-
-
-
+%
+%
+%
+%
+%
 Message-passing belief propagation algorithms are another way to estimate true 
 marginals for general graphical models. 
 They are derived from the theory of variable elimination, but are applicable to 
@@ -310,19 +312,62 @@ and pairwise potentials, respectively:
     \qquad \qquad
     \phi_{ij} = \exp \Bigr [ \beta J \sigma_i \sigma_j \Bigr ]
 \]
-We then run a standard belief propagation routine. 
+We then run a belief propagation routine on the factor graph according to the 
+update scheme in Algorithm \ref{alg:bp}. 
+
+\begin{algorithm}
+    \caption{Belief propagation calibration step on factor graph}
+    \begin{algorithmic}[1]
+        \Statex \underline{\textbf{Input}}
+        \Statex \quad Factor graph: $G(V = \{v_i\}_i \cup \{v_{ij}\}_{i, j}, E)$
+        \Statex \quad Unary Factors: $\{\phi_i(\sigma_i)\}_i$
+        \Statex \quad Pairwise Factors: $\{\phi_{ij}(\sigma_i, \sigma_j)\}_{i, j}$
+
+        \Statex \underline{\textbf{Output:}}
+        \Statex \quad Unary beliefs: $\{\beta_i(\sigma_i)\}_i$
+        \Statex \quad Pairwise beliefs: $\{\beta_{ij}(\sigma_i, \sigma_j)\}_{i, j}$
+        
+        \Statex // Pass messages from unary nodes
+        \For{unary $v_i \in V$}
+        \For{pairwise $v_{ij} \in Nb(v_i)$}
+        \State $\delta[v_i \rightarrow v_{ij}] = \phi_i \prod_{k \neq j} \delta[v_{ik} \rightarrow v_i]$ \quad // Nothing to sum!
+        \EndFor
+        \EndFor
+
+        \Statex // Pass messages from pairwise nodes
+        \For{pairwise $v_{ij} \in V$}
+        \For{$\{v_i, v_j\} = Nb(v_{ij})$}
+        \State $\delta[v_{ij} \rightarrow v_i] = \sum_{v_j} \phi_{ij} \delta[v_j \rightarrow v_{ij}]$
+        \State $\delta[v_{ij} \rightarrow v_j] = \sum_{v_i} \phi_{ij} \delta[v_i \rightarrow v_{ij}]$
+        \EndFor
+        \EndFor
+
+        \Statex // Compute beliefs
+        \For{unary $v_i \in V$}
+        \State $\beta_i = \phi_i \prod_{j} \delta[v_{ij} \rightarrow v_i]$
+        \EndFor
+        \For{pairwise $v_{ij} \in V$}
+        \State $\beta_{ij} = \phi_{ij} \delta[v_i \rightarrow v_{ij}] \delta[v_j \rightarrow v_{ij}]$
+        \EndFor
+        \State \textbf{return } $\{\beta_i\}_i, \{\beta_{ij}\}_{ij}$
+    \end{algorithmic}
+    \label{alg:bp}
+\end{algorithm}
 
 \begin{figure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=\textwidth]{report_bp_gaussian}
         \centering
-        \caption{\textit{Spin lattice beliefs from various steps in the belief propagation process}}
+        \caption{\textit{
+            Spin lattice marginal beliefs at various points in the calibration 
+            process. 
+        }}
         \label{fig:bp_gaussian_a}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
-        \includegraphics[width=\textwidth]{report_mcmc_gaussian_measurables}
+        \includegraphics[width=\textwidth]{report_bp_gaussian_measurables}
         \centering
-        \caption{\textit{Measurables of samples during the sampling process}}
+        \caption{\textit{Mean value of measurables taken from samples from marginals}}
         \label{fig:bp_gaussian_b}
     \end{subfigure}
     \centering
@@ -331,9 +376,66 @@ We then run a standard belief propagation routine.
         with $J = 0.5$, $\beta = 10$, and a centered Gaussian 
         magnetic field
         $B_{ij} = 0.01 \exp [-\frac{1}{1024}((i-128)^2 + (j-128)^2)]$. 
+        We run belief propagation until the difference between messages falls 
+        below $\epsilon = 0.001$. 
     }}
     \label{fig:bp_gaussian}
 \end{figure}
+In Figure \ref{fig:bp_gaussian}, we repeatedly run Algorithm \ref{alg:bp} on the 
+same system from Figure \ref{fig:mcmc_gaussian}, until the maximum change in the 
+messages falls below some $\epsilon$. 
+We also compute some measurables by taking samples from the marginal beliefs at 
+each step and computing their mean energy and magnetization. 
+
+After calibration, the approximate marginals visualized in Figure
+\ref{fig:bp_gaussian_a} reflect what we would expect, full system spin alignment 
+by the magnetic field. 
+The trend in the magnetization is also observable in the plots of sample 
+measurables which also reflects the appropriate minimization of energy. 
+
+\subsection{Comparing MCMC and belief propagation}
+
+There are a number of considerations to keep in mind when deciding how to do 
+inference on Ising models. 
+
+The benefits of MCMC inference lie in the easy access to valid microstate 
+samples throughout the estimation process, which makes the computation of 
+meaningful measurables easy. 
+This is a direct consequence of the simulatory nature of MCMC which emulates, as 
+closely as possible, the physical processes that underlie our desired marginal 
+distributions. 
+
+Unfortunately, MCMC is slow, and very difficult to parallelize. 
+This slowness is compounded by its tendency to follow unoptimal branches in the 
+search tree and get stuck in local minima. 
+
+Belief propagation has its upsides in the immediate access to highly-accurate 
+marginal beliefs upon calibration. 
+Belief propagation is also fast. 
+It is highly parallelizable, especially on factor graphs, and inherently 
+bypasses many of the search tree inefficiencies that Monte Carlo methods 
+struggle with. 
+
+The downsides of belief propagation lie in the poor interpretability of 
+intermediate steps. 
+Since the marginal beliefs do not necessarily agree with each other before 
+calibration, they do not correspond to physically meaningful microstates upon 
+sampling. 
+As a consequence, it is difficult to take measurements of the system without 
+sampling. 
+Computing the partition function derivatives may be one solution, but we leave 
+that problem to future studies. 
+
+For most physical use cases, we conclude that MCMC is the better approach to 
+inference. 
+The interpretability and ease of measurements when dealing with explicit 
+microstates is extremely valuable, especially in the context of magnetism. 
+As we showed, simulating and analyzing physical phenomena such as phase 
+transitions are straightforward and can be very precise. 
+
+\section{Conclusions}
+
+In this paper we have 
 
 \newpage
 
