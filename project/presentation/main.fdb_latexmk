@@ -1,9 +1,10 @@
 # Fdb version 4
-["pdflatex"] 1716308611.32381 "/Users/jshe/School/year2/ttic31180/project/presentation/main.tex" "main.pdf" "main" 1716308614.28211 0
-  "../graphics/3Dising.png" 1716224343.62786 471753 a150996e8bf66b4abd82455784a79df6 ""
-  "../graphics/bp.png" 1716301837.50735 9318 bf5442df48a9e2c274677f6529212682 ""
-  "../graphics/mcmc.png" 1716281229.25721 1721384 7225a584a7ee04ddc603a85cf817c3ab ""
-  "../graphics/mcmc_phase.png" 1716306877.19214 38938 66fa5f69e9b5da275059d34c52718fe6 ""
+["pdflatex"] 1716586191.16948 "/Users/jshe/School/year2/ttic31180/project/presentation/main.tex" "main.pdf" "main" 1716586194.189 0
+  "../graphics/3Dising.png" 1716436199.38676 471753 a150996e8bf66b4abd82455784a79df6 ""
+  "../graphics/bp.png" 1716436199.40743 9318 bf5442df48a9e2c274677f6529212682 ""
+  "../graphics/mcmc.png" 1716436199.41651 1721384 7225a584a7ee04ddc603a85cf817c3ab ""
+  "../graphics/mcmc_phase.png" 1716579226.04948 31332 5860d52154feb4a7d9cf51a3492f6ad7 ""
+  "../graphics/monte-carlo-ising-2.png" 1716436199.44617 18082 652d4e37ec19adaf9aa42b04ba2ac1b8 ""
   "/Users/jshe/School/year2/ttic31180/project/presentation/main.tex" 1716308611.0678 6654 f48670e6efa900a5a6fe7cfcbfa00e12 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -312,13 +313,12 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1711122559.97506 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1711122429 8221435 87475a11a0e16feece63157929773497 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "embed_video.tex" 1716279296.62273 2220 5773490e916e0abe83ffc8b8724a2d32 ""
-  "main.aux" 1716308614.10309 3641 05e857e3505db144fb8f4a874637a487 "pdflatex"
-  "main.nav" 1716308614.10442 2281 a4215babcabd86c5cc9283d52c355787 "pdflatex"
-  "main.out" 1716308614.10415 470 85fb3b64740c30d5d641bbea44c235a7 "pdflatex"
+  "embed_video.tex" 1716586190.83541 2220 5773490e916e0abe83ffc8b8724a2d32 ""
+  "main.aux" 1716586194.00247 3641 05e857e3505db144fb8f4a874637a487 "pdflatex"
+  "main.nav" 1716586194.00389 2281 a4215babcabd86c5cc9283d52c355787 "pdflatex"
+  "main.out" 1716586194.00359 470 85fb3b64740c30d5d641bbea44c235a7 "pdflatex"
   "main.tex" 1716308611.0678 6654 f48670e6efa900a5a6fe7cfcbfa00e12 ""
   "minesbeamer.cls" 1716224343.65318 10729 612918b4ce0ab5a01d0a1448942d5a9b ""
-  "monte-carlo-ising-2.png" 1716224343.65348 18082 652d4e37ec19adaf9aa42b04ba2ac1b8 ""
   (generated)
   "main.aux"
   "main.log"

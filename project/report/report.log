@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.22)  24 MAY 2024 14:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.22)  24 MAY 2024 18:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -482,38 +482,35 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
-<../graphics/report_mcmc_gaussian.png, id=41, 1084.05pt x 361.35pt>
+<../graphics/report_mcmc_gaussian.png, id=48, 1084.05pt x 361.35pt>
 File: ../graphics/report_mcmc_gaussian.png Graphic file (type png)
 <use ../graphics/report_mcmc_gaussian.png>
-Package pdftex.def Info: ../graphics/report_mcmc_gaussian.png  used on input line 233.
+Package pdftex.def Info: ../graphics/report_mcmc_gaussian.png  used on input line 235.
 (pdftex.def)             Requested size: 397.48499pt x 132.4954pt.
-<../graphics/report_mcmc_gaussian_measurables.png, id=43, 722.7pt x 289.08pt>
+<../graphics/report_mcmc_gaussian_measurables.png, id=50, 722.7pt x 289.08pt>
 File: ../graphics/report_mcmc_gaussian_measurables.png Graphic file (type png)
 <use ../graphics/report_mcmc_gaussian_measurables.png>
-Package pdftex.def Info: ../graphics/report_mcmc_gaussian_measurables.png  used on input line 242.
+Package pdftex.def Info: ../graphics/report_mcmc_gaussian_measurables.png  used on input line 244.
 (pdftex.def)             Requested size: 397.48499pt x 158.99448pt.
  [2]
-<../graphics/mcmc_phase.png, id=60, 462.528pt x 346.896pt>
-File: ../graphics/mcmc_phase.png Graphic file (type png)
-<use ../graphics/mcmc_phase.png>
-Package pdftex.def Info: ../graphics/mcmc_phase.png  used on input line 272.
-(pdftex.def)             Requested size: 397.48499pt x 298.12889pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+<../graphics/report_mcmc_phase.png, id=65, 722.7pt x 289.08pt>
+File: ../graphics/report_mcmc_phase.png Graphic file (type png)
+<use ../graphics/report_mcmc_phase.png>
+Package pdftex.def Info: ../graphics/report_mcmc_phase.png  used on input line 269.
+(pdftex.def)             Requested size: 397.48499pt x 158.99448pt.
  [3 <../graphics/report_mcmc_gaussian.png> <../graphics/report_mcmc_gaussian_measurables.png>]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 319.
-<../graphics/report_bp_gaussian.png, id=72, 1084.05pt x 361.35pt>
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 332.
+<../graphics/report_bp_gaussian.png, id=79, 1084.05pt x 361.35pt>
 File: ../graphics/report_bp_gaussian.png Graphic file (type png)
 <use ../graphics/report_bp_gaussian.png>
-Package pdftex.def Info: ../graphics/report_bp_gaussian.png  used on input line 359.
+Package pdftex.def Info: ../graphics/report_bp_gaussian.png  used on input line 372.
 (pdftex.def)             Requested size: 397.48499pt x 132.4954pt.
-<../graphics/report_bp_gaussian_measurables.png, id=73, 722.7pt x 289.08pt>
+<../graphics/report_bp_gaussian_measurables.png, id=80, 722.7pt x 289.08pt>
 File: ../graphics/report_bp_gaussian_measurables.png Graphic file (type png)
 <use ../graphics/report_bp_gaussian_measurables.png>
-Package pdftex.def Info: ../graphics/report_bp_gaussian_measurables.png  used on input line 368.
+Package pdftex.def Info: ../graphics/report_bp_gaussian_measurables.png  used on input line 381.
 (pdftex.def)             Requested size: 397.48499pt x 158.99448pt.
- [4 <../graphics/mcmc_phase.png>] [5] [6 <../graphics/report_bp_gaussian.png> <../graphics/report_bp_gaussian_measurables.png>] (./report.aux)
+ [4 <../graphics/report_mcmc_phase.png>] (./report.bbl [5]) [6 <../graphics/report_bp_gaussian.png> <../graphics/report_bp_gaussian_measurables.png>] (./report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -522,18 +519,18 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 953CAF56FD63B72F5918476D40DCAADD;1045.
  ) 
 Here is how much of TeX's memory you used:
- 14521 strings out of 474116
- 235536 string characters out of 5743682
- 1941187 words of memory out of 5000000
- 36527 multiletter control sequences out of 15000+600000
- 589174 words of font info for 148 fonts, out of 8000000 for 9000
+ 14571 strings out of 474116
+ 236264 string characters out of 5743682
+ 1944187 words of memory out of 5000000
+ 36544 multiletter control sequences out of 15000+600000
+ 590330 words of font info for 165 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,8n,79p,1053b,590s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (6 pages, 473490 bytes).
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on report.pdf (6 pages, 510518 bytes).
 PDF statistics:
- 158 PDF objects out of 1000 (max. 8388607)
- 114 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
+ 170 PDF objects out of 1000 (max. 8388607)
+ 124 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
  34890 words of extra memory for PDF output out of 35830 (max. 10000000)
 
