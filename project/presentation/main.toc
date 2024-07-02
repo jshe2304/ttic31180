@@ -1,3 +1,0 @@
-\beamer@sectionintoc {1}{The Ising Model}{2}{0}{1}
-\beamer@sectionintoc {2}{Inference Using the Ising Model}{7}{0}{2}
-\beamer@sectionintoc {3}{Belief Propagation}{12}{0}{3}

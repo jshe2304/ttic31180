@@ -112,55 +112,51 @@ spin $\sigma$:
 If an external magnetic field $\vec{B}$ is present, the potential energy is 
 given by the classical formula:
 \[U_B = - \vec{\mu} \cdot \vec{B}\]
-Handily, this also absorbs the splitting of atomic energy levels at the quantum 
-mechanical level. 
 
 There also exist pairwise exchange interactions between particles due to the 
 mutual effects of their magnetic moments.
 These exchange effects have strengths defined by constants $J_{ij}$. 
 The potential energy contained by these pairwise interactions is:
 \[U_{ij} = - J_{ij} \vec{\mu_i} \cdot \vec{\mu_j}\]
-We will ignore quantum mechanical spin-spin coupling and exclusion energies. 
+For simplicity, we will ignore other, more complicated phenomena. 
 
+Now, consider a collection of particles 
+$\vec{\mu} = (\vec{\mu}_1, \dots, \vec{\mu_n})$ 
+in the prescence of an external magnetic field $\vec{B}$. 
 Note that both potential energies are minimized when the moments align with 
 $\vec{B}$ and with each other. 
-This corresponds to the theory of ferromagnetism as a systematic alignment of 
-spins. 
-
-Now, consider a collection of particles $\vec{\mu_i}$ in the prescence of an 
-external magnetic field $\vec{B}$. 
+This corresponds to the explanation of ferromagnetism as a systematic alignment 
+of spins. 
 The Hamiltonian, which specifies the total energy of the system, is defined by 
-the sum of all pairwise and unary energies:
+the sum of all these pairwise and unary energies:
 \begin{equation}\label{eq:exactE}
-    E(\vec{\mu}) = -\frac{1}{2}\sum_i \sum_j J_{ij} \vec{\mu_i} \cdot \vec{\mu_j} - \sum_i \vec{\mu_i} \cdot \vec{B}
+    E(\vec{\mu}) = -\frac{1}{2}\sum_i^n \sum_j^n J_{ij} \vec{\mu_i} \cdot \vec{\mu_j} - \sum_i^n \vec{\mu_i} \cdot \vec{B}
 \end{equation}
 In most cases, working with this Hamiltonian is intractable. 
-Luckily, we can simplify it by making several strategic assumptions. 
+Luckily, we can simplify it tremendously by making several assumptions. 
 
-First, in the context of an atomic lattice, all relevant particles are fermionic 
-and have spin-$\frac{1}{2}$ up or down. 
-We assume that all particles within an atom have identical spin, so the spin of 
-each atom as a whole is fermionic. 
-Then the magnetic moments simplify to $\vec{\mu_i} = \mu \sigma_i$, where 
-$\sigma_i \in \{-1, 1\}$ is the atomic spin. 
+First, in the context of an atomic lattice, all sites are assumed to be 
+identical and representable by a single fermionic spin variable. 
+That is, each site's magnetic moment simplifies as $\vec{\mu_i} = \mu \sigma_i$, 
+where the spin $\sigma_i \in \{-1, 1\}$. 
 
 Second, we make a mean-field nearest-neighbor approximation. 
 That is, we assume strength of pairwise interactions is negligible for 
-non-adjacent pairs. 
-We also assume the non-negligible $J_{ij}$'s are equal to some $J$, that is, 
-that the material is organized in some regular lattice. 
+non-adjacent pairs of atoms. 
+We also assume the non-negligible $J_{ij}$'s are all equal to some constant $J$, 
+that is, the material is organized in some regular, symmetric lattice. 
 
 Coalescing constants, the Hamiltonian reduces nicely to:
 \begin{equation}\label{eq:isingE}
-    E(\vec{\sigma}) = -J\sum_i \sum_{j \in adj(i)} \sigma_i \sigma_j - \sum_i \sigma_i B_i
+    E(\vec{\sigma}) = -J\sum_i^n \sum_{j \in adj(i)} \sigma_i \sigma_j - \sum_i^n \sigma_i B_i
 \end{equation}
-Given this energy expression, we can use the Boltzmann distribution to compute a 
-probability of some microstate $\vec{\sigma}$ at inverse temperature $\beta$:
+The Boltzmann distribution then gives the probability of some microstate of 
+spins $\vec{\sigma} = (\sigma_1, \dots, \sigma_k)$ at inverse temperature $\beta$:
 \begin{equation} \label{eq:boltzmann}
     P(\vec{\sigma}) = \frac{1}{Z}e^{-\beta E(\vec{\sigma})} 
 \end{equation}
 The physical theory of the Ising model has now been developed and we can turn to 
-the purely abstract task of inference on a PGM. 
+the task of inference on a PGM. 
 %
 %
 %
@@ -175,13 +171,13 @@ the purely abstract task of inference on a PGM.
 In many cases, the Ising model of ferromagnetism is used to produce physical 
 measurables like energy and magnetization. 
 For example, Ernst Ising's original inquiry asked if the Ising model was capable 
-of demonstrating phase transitions in the magnetic state. 
+of demonstrating phase transitions. 
 
 Now, these measurables require marginal distributions in order to compute. 
 For example, the quantities we are most interested in, the energy 
-(\ref{eq:isingE}) and the magnetization ($\mathbb{E}[\sigma]$), both require 
-explicit microstate spins. 
-We will now examine two approaches to computing these marginals—Markov Chain 
+\ref{eq:isingE} and the magnetization $\mathbb{E}[\sigma]$, both require 
+explicit microstates to compute. 
+We will now examine two approaches to estimating these marginals—Markov Chain 
 Monte Carlo and belief propagation. 
 %
 %
@@ -194,16 +190,14 @@ Monte Carlo and belief propagation.
 %
 %
 %
-Monte Carlo algorithms produce better and better estimates by repeated sampling 
-from the true distribution. 
-When the true distribution is not immediately available for sampling, employing 
-Markov Chain Monte Carlo defines an approximate distribution that hopefully, 
-during sampling, approaching the true one. 
+Monte Carlo algorithms produce better and better estimates by repeated sampling. 
+When the true distribution is not immediately available for sampling, 
+constructing an appropriate Markov Chain is one way to approximate it. 
 
-In the context of the Ising model, the Markov states accessible from some 
+In the context of the Ising model, the Markov transitions available from some 
 microstate of spins $\vec{\sigma}$ are those created by flipping any spin 
 $\sigma_i$ in $\vec{\sigma}$. 
-We can sample from these adjacent microstates, then, by choosing a random 
+We can sample from these available transitions, then, by choosing a random 
 $\sigma_i$ to flip. 
 Since we want to move towards the true, equilibrium distribution, we only 
 transition to the new sampled microstate $\vec{\sigma}'$ if 
@@ -223,12 +217,14 @@ the Boltzmann factor:
     \frac{P(\vec{\sigma}')}{P(\vec{\sigma})}
     = e^{-\beta \Delta E} 
 \]
-This nicely models the phenomena of spin flips caused by field fluctuations. 
+Physically, this nicely models the phenomena of spin flips caused by field 
+fluctuations. 
 
 We implemented this process in Python on square lattices of spins. 
 For our sampling process, we iterated through all spins in random order, at each 
-step evaluating the transition defined by flipping the present spin. 
-We believe this best simulates the physical equilibration. 
+step evaluating the transition defined by flipping that spin. 
+We believe this is a good trade off between performance and an accurate 
+simulation of the physical equilibration. 
 
 \begin{figure}[h]
     \begin{subfigure}{\textwidth}
@@ -287,10 +283,9 @@ fluctuations which cause spin flips become more and more likely, and thus
 the alignment of spins is constantly being disrupted. 
 It has been shown analytically that the Ising model in 2D exhibits this 
 phenomenon of phase transitions. 
-This simulation reinforces this claim. 
+This simulation reinforces that claim. 
 We can also identify what is called the Curie temperature, the point at which 
 the phase transition occurs. 
-
 %
 %
 %
@@ -307,10 +302,8 @@ marginals for general graphical models.
 They are derived from the theory of variable elimination, but are applicable to 
 general graphs which may include cycles. 
 
-Belief propagation is especially effective and simple to implement on Ising 
-models. 
-This follows from the Boltzmann distribution that defines the joint distribution 
-of the Ising model:
+Belief propagation is especially simple to implement on Ising models. 
+This follows from the Boltzmann distribution that defines the joint distribution:
 \begin{equation}\label{isingJoint}
     \tilde{P}(\vec{\sigma}) = \exp \Bigr [\beta J\sum_i \sum_{j \in adj(i)} \sigma_i \sigma_j + \beta \sum_i \sigma_i B_i \Bigr ]
 \end{equation}
@@ -398,29 +391,27 @@ scheme in Algorithm \ref{alg:bp}.
 We tested this on the same system from \ref{fig:mcmc_gaussian}. 
 Algorithm \ref{alg:bp} is run repeatedly until the maximum change in the 
 messages falls below some $\epsilon$. 
-We also take measurements by taking samples from the marginal beliefs at 
+We also take pseudo-measurements by sampling from the marginal beliefs at 
 each step and computing their mean energy and magnetization. 
 
 After calibration, the approximate marginals visualized in Figure
 \ref{fig:bp_gaussian_a} reflect what we would expect, full system spin alignment 
 by the magnetic field. 
 The trend in the magnetization is also observable in the plots of sample 
-measurables, which reflect the appropriate minimization of energy. 
+pseudo-measurables, which reflect the appropriate minimization of energy. 
 
 \subsection{Comparing MCMC and belief propagation}
 
 When deciding which paradigm of inference to use for the Ising model, there are 
 a number of considerations with respect to speed, output, interpretability, etc. 
-Here, we will discuss these variables with respect to MCMC and belief 
-propagation. 
+Here, we will discuss these factors with respect to MCMC and belief propagation. 
 
 MCMC is useful because it provides easy access to valid microstate samples 
 throughout the estimation process. 
 Importantly, this makes the computation of meaningful measurables easy and 
 intuitive. 
 This is a direct consequence of the simulatory nature of MCMC, which emulates, 
-as closely as possible, the physical processes that underlie our desired 
-statistics. 
+as closely as possible, the underlying physical processes. 
 
 Unfortunately, MCMC is slow, and very difficult to parallelize. 
 This slowness is compounded by its tendency to follow unoptimal branches in the 
@@ -438,17 +429,15 @@ intermediate steps.
 Since the marginal beliefs do not necessarily agree with each other until 
 they are fully calibrated, they do not correspond to physically meaningful 
 microstates when sampled. 
-As a consequence, it is difficult to take measurements of the system without 
-having to draw samples. 
+As a consequence, it is difficult to take measurements of the system. 
 Deriving macrostate properties from the partition function may be one solution, 
 but we leave that problem to future studies. 
 
 For most physical use cases, we conclude that MCMC is the better approach to 
 inference. 
-The interpretability and ease of measurements when dealing with explicit 
-microstates is extremely valuable, especially in the context of magnetism. 
-As we showed, simulating and analyzing physical phenomena such as phase 
-transitions are straightforward and can be very precise. 
+The interpretability and ease of measurement is extremely valuable, and lends 
+itself to the precise simulation and analysis of physical phenomena such as 
+phase transition. 
 %
 %
 %
@@ -461,10 +450,9 @@ transitions are straightforward and can be very precise.
 %
 %
 In this paper, we revisited the Ising model, an important probabilistic model of 
-ferromagnetism, to pay homage and exercise our modern computational methods. 
-We discussed the theory behind it, from a physics point of view, and linked it 
-to the PGMs theory we use to perform inference on it. 
-We evaluate two approaches, Markov Chain Monte Carlo and belief propagation, 
+ferromagnetism, to pay homage and exercise modern computational methods. 
+We discuss the physical theory and used it to motivate the PGMs methods applied. 
+We evaluated two approaches, Markov Chain Monte Carlo and belief propagation, 
 for marginal inference on the Ising model, and discussed their respective 
 strengths and weaknesses. 
 
@@ -477,21 +465,34 @@ of the system, belief propagation may prove more effective.
 
 For the future, there is much to explore both with respect to the problem of 
 magnetism as well as the Ising model. 
-As an example, deriving beliefs about the values of macrostate measurables, 
-which might involve the partition function, is an interesting and challenging 
-task that might lessen our reliance on MCMC. 
+For example, deriving beliefs about macrostate measurables, which might involve 
+the partition function, is an interesting and challenging task that might lessen 
+the reliance on MCMC. 
+There is also the problem of better simulation and analysis of phase transition 
+phenomena, which might necessitate the adaptation of renormalization group 
+theory to machine learning. 
+
 We conclude by affirming the power and usefulness of the Ising model in the 
 context of physical as well as abstract probabilistic modeling. 
 Within its rich theory, we can intuit much about modern probabilistic 
-reasoning and its connection with complex physical ensembles. 
-And in its rich history, in the road from ferromagnetism to deep neural 
-networks, we can find solace in the fact that our crude toy models might not be 
-so childish after all. 
+reasoning and its connection with the study of physical ensembles. 
+Additionally, in the rich history of the model, in the story leading from 
+ferromagnetism to deep neural networks, we can find solace in the fact that 
+today's crude toy models might inspire tommorow's transhuman super-intelligence. 
 %
 %
 %
 %
 %
+\section{Supplementary Material}
+%
+%
+%
+%
+%
+Our implementations of the above algorithms, using Python and the NumPy package, 
+can be found at \url{https://github.com/jshe2304/ttic31180}. 
+
 \bibliographystyle{unsrt}
 \bibliography{references}
 
